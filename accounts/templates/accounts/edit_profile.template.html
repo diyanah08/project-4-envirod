@@ -1,0 +1,14 @@
+{% extends 'base.template.html' %}
+
+{% load crispy_forms_tags %}
+
+{%block content%}
+<div class = "main">
+<h1>Edit Profile</h1>
+<form method="POST">
+  {% csrf_token %}
+  {{ form | crispy }}
+  <input type='submit' class="btn btn-primary" value='Save'/> <input type="button" class="btn btn-primary" value="Back" onclick="goBack()">
+</form>
+</div>
+{%endblock%}
