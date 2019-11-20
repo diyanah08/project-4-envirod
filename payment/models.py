@@ -36,6 +36,7 @@ class LineItem(models.Model):
     name = models.CharField(max_length=255, blank=False)
     cost = models.IntegerField(blank=False)
     transaction = models.ForeignKey('Transaction', on_delete=models.CASCADE)
+    owner = models.ForeignKey("accounts.MyUser", on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
     	return self.name + " : " + self.sku

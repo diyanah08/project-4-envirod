@@ -45,6 +45,7 @@ def pay(request):
         	lineItem.name = cart_item.event.name
         	lineItem.sku = cart_item.event.sku
         	lineItem.cost = cart_item.event.cost
+        	lineItem.owner = request.user
         	lineItem.save()
 
         order_form = OrderForm()
@@ -121,3 +122,9 @@ def pay(request):
             'transaction': transaction,
             'publishable': settings.STRIPE_PUBLISHABLE_KEY
             })
+            
+def events_history(request):
+    line_items = LineItem.objects.filter(owner=request.user)
+    return render(request, 'accounts/history.template.html', {
+        'line_items' : line_items
+    })

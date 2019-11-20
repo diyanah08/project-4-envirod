@@ -1,0 +1,26 @@
+{% extends 'base.template.html' %}
+
+{%block content%}
+<div class = "main">
+<h1>Your Events History</h1>
+{%for line_item in line_items %}
+<div class="media">
+    <img src="{{line_item.event.image.url}}" class="align-self-center mr-3" height="100" width="100">
+    <div class="media-body">
+        <h5 class="mt-0">{{line_item.event.name}}</h5>
+        <p class="card-text">About Event: {{line_item.event.description}}</p>
+        <p class="card-text">Date: {{line_item.event.date}}</p>
+        <p class="card-text">Time: {{line_item.event.start_time}} to {{line_item.event.end_time}}</p>
+        <p class="card-text">Location: {{line_item.event.location}}</p>
+        {% for t in line_item.event.tags.all %}
+            <h6>{{t.name}}</h6>
+        {%endfor%}
+    </div>
+</div>    
+
+
+{%endfor%}
+
+</div>
+
+{%endblock%}
