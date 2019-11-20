@@ -23,7 +23,7 @@ h1 {
 
 /*navbar styles*/
 .navbar {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .navbar-brand {
@@ -53,6 +53,22 @@ h1 {
     font-family: 'Special Elite', cursive;
     font-size: 20px;
     font-weight: bolder;
+    letter-spacing: 2px;
+    color: teal !important;
+}
+
+.dropdown-menu {
+    background-color: rgb(217,228,230);
+    border: none;
+    margin: 0px;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.dropdown-link {
+    font-family: 'Special Elite', cursive;
+    font-size: 12px;
+    font-weight: bold;
     letter-spacing: 2px;
     color: teal !important;
 }

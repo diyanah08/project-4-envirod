@@ -25,26 +25,41 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav  ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url "map" %}">Location</a>
+            <li class="dropdown nav-item">
+              <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class = "dropdown-link" href="">About</a></li>
+                <li><a class = "dropdown-link" href="{% url "map" %}">Locations</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
             {% if not user.is_authenticated %}
-              <a class="nav-link" href="{% url "login" %}">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url "register" %}">Register</a>
+            <li class="dropdown nav-item">
+              <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class = "dropdown-link" href="{% url "login" %}">Login</a></li>
+                <li><a class = "dropdown-link" href="{% url "register" %}">New User</a></li>
+              </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url "browse" %}">Browse</a>
             </li>
             {%endif%}
             {%if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "profile" %}">Profile</a>
+            <li class="dropdown nav-item">
+              <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class = "dropdown-link" href="{% url "profile" %}">View Profile</a></li>
+                <li><a class = "dropdown-link" href="{% url "editProfile" %}">Edit Profile</a></li>
+                <li><a class = "dropdown-link" href="{% url "password_change" %}">Change Password</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url "catalog" %}">Events</a>
+            <li class="dropdown nav-item">
+              <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class = "dropdown-link" href="{% url "catalog" %}">Browse Events</a></li>
+                <li><a class = "dropdown-link" href="{% url "event_history" %}">Your Events History</a></li>
+                <li><a class = "dropdown-link" href="">Plan an Event</a></li>
+              </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url "view" %}">Cart</a>
@@ -52,6 +67,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url "logout" %}">Logout</a>
             </li>
+            {%endif%}
             <li class="nav-link">
               <div class= "ml-auto user-display">
                 {% if request.user.username %}
@@ -59,7 +75,6 @@
                 {% endif %}
               </div>
             </li>
-            {%endif%}
           </ul>
         </div>
       </nav>
