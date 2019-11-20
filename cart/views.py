@@ -1,3 +1,40 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
+from .models import CartItem
+from events.models import Event
 
-# Create your views here.
+def view_cart(request):
+    all_cart_items = CartItem.objects.filter(owner=request.user)
+    return render(request, 'cart/cart.template.html',{
+        'all_cart_items':all_cart_items
+    })
+
+def add_to_cart(request, events_id):
+    
+    events = Event.objects.get(pk=events_id)
+    
+    existing_cart_item = CartItem.objects.filter(owner=request.user, events=events).first()
+    
+    if existing_cart_item == None:
+        new_cart_item = CartItem()
+        new_cart_item.events = events
+        new_cart_item.owner = request.user
+        new_cart_item.quantity = 1
+        new_cart_item.save()
+    else:
+        existing_cart_item.quantity += 1
+        existing_cart_item.save()
+    
+    all_events = Event.objects.all()
+    return render(request, 'events/added.template.html', {
+        'all_events': all_events
+    })
+    
+def remove_from_cart(request, cart_item_id):
+
+    existing_cart_item = CartItem.objects.get(pk=cart_item_id)
+    if existing_cart_item.quantity == 1:
+        existing_cart_item.delete()
+    else:
+        existing_cart_item.quantity -= 1
+        existing_cart_item.save()
+    return redirect(reverse('view'))
