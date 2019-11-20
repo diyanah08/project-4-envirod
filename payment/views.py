@@ -12,7 +12,7 @@ def calculate_cart_cost(request):
     all_cart_items = CartItem.objects.filter(owner=request.user)
     amount = 0
     for cart_item in all_cart_items:
-        amount += cart_item.events.cost * cart_item.quantity
+        amount += cart_item.event.cost * cart_item.quantity
         
     return amount
 
@@ -41,10 +41,10 @@ def pay(request):
         for cart_item in all_cart_items:
         	lineItem = LineItem()
         	lineItem.transaction = transaction
-        	lineItem.events = cart_item.events
-        	lineItem.name = cart_item.events.name
-        	lineItem.sku = cart_item.events.sku
-        	lineItem.cost = cart_item.events.cost
+        	lineItem.event = cart_item.event
+        	lineItem.name = cart_item.event.name
+        	lineItem.sku = cart_item.event.sku
+        	lineItem.cost = cart_item.event.cost
         	lineItem.save()
 
         order_form = OrderForm()
@@ -94,8 +94,8 @@ def pay(request):
                     
                     line_items = LineItem.objects.filter(transaction_id=transaction.id)
                     for each_line_item in line_items:
-                        each_line_item.events.quantity -= 1
-                        each_line_item.events.save()
+                        each_line_item.event.quantity -= 1
+                        each_line_item.event.save()
                         
                     cart_items = CartItem.objects.filter(owner=request.user).delete()
                     

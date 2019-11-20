@@ -8,15 +8,15 @@ def view_cart(request):
         'all_cart_items':all_cart_items
     })
 
-def add_to_cart(request, events_id):
+def add_to_cart(request, event_id):
     
-    events = Event.objects.get(pk=events_id)
+    event = Event.objects.get(pk=event_id)
     
-    existing_cart_item = CartItem.objects.filter(owner=request.user, events=events).first()
+    existing_cart_item = CartItem.objects.filter(owner=request.user, event=event).first()
     
     if existing_cart_item == None:
         new_cart_item = CartItem()
-        new_cart_item.events = events
+        new_cart_item.event = event
         new_cart_item.owner = request.user
         new_cart_item.quantity = 1
         new_cart_item.save()

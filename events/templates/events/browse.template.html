@@ -5,14 +5,19 @@
 <div class = "main">
 <div style='display:flex;justify-content:space-between'>
 
-    {%for workshop in all_workshops %}
+    {%for event in all_events %}
     <div class="card" style="width: 18rem;">
-        <img src="{{workshop.image.url}}" class="card-img-top">
+        <img src="{{event.image.url}}" class="card-img-top">
         <div class="card-body">
-            <h5 class="card-title">{{workshop.name}}</h5>
-            <p class="card-text">{{workshop.description}}</p>
-            <p class="card-text">${{workshop.getCostInDollars}}0</p>
-            <a href="{% url 'login' %}" class="btn btn-primary">Login to Shop</a>
+            <h5 class="card-title">{{event.name}}</h5>
+            <p class="card-text">About Event: {{event.description}}</p>
+            <p class="card-text">Cost: ${{event.getCostInDollars}}0</p>
+            <p class="card-text">Location: {{event.location}}</p>
+            <p class="card-text">Seats Left: {{event.quantity}}</p>
+            {% for t in event.tags.all %}
+            <h6>{{t.name}}</h6>
+            {%endfor%}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login to Register</a>
         </div>
     </div>
     {%endfor%}

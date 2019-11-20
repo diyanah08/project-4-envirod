@@ -31,7 +31,7 @@ class Transaction(models.Model):
     	return str(self.id)
     	
 class LineItem(models.Model):
-    events = models.ForeignKey('events.Event', null=True, on_delete=models.CASCADE)
+    event = models.ForeignKey('events.Event', null=True, on_delete=models.CASCADE)
     sku = models.CharField(max_length=255, blank=False)
     name = models.CharField(max_length=255, blank=False)
     cost = models.IntegerField(blank=False)
