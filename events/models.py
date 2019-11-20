@@ -8,11 +8,14 @@ class Event(models.Model):
     description = models.TextField(blank=False)
     cost = models.IntegerField(blank=False)
     quantity = models.IntegerField(blank=False, default=0)
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     location = models.ForeignKey('Location', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
     
     def __str__(self):
-        return self.name + " : " + self.sku
+        return self.sku + " : " + self.name + " [ " + str(self.date) + " , " + str(self.start_time) + " ] "
         
     def getCostInDollars(self):
         return self.cost/100
