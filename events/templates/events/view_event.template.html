@@ -1,0 +1,24 @@
+{% extends 'base.template.html' %}
+
+{%block content%}
+<div class = "main">
+{%for each_content in contents %}
+<div>
+<h1>{{ each_content.event_title }}</h1>
+<p>Description: {{ each_content.description }}</p>
+<p>Name : {{ each_content.name }}</p>
+<p>Telephone: {{ each_content.phone_number }}</p>
+<p>Cost: {{ each_content.cost }}</p>
+<p>Seats Needed: {{ each_content.seats }}</p>
+<p>Date [YYYY-MM-DD]: {{ each_content.date }}</p>
+<p>Start Time [HH:MM:SS]: {{ each_content.start_time }}</p>
+<p>Duration: {{ each_content.hours_needed }}</p>
+<p>Location: {{ each_content.location }}</p>
+{% for t in event.tags.all %}
+            <p>{{t.name}}</p>
+            {%endfor%}
+<a href="{% url 'edit_event' name_id=name.id %}" class="btn btn-primary">Edit Event</a>
+</div>
+{%endfor%}
+</div>
+{%endblock%}
