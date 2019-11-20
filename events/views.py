@@ -4,6 +4,9 @@ from .models import Event
 # Create your views here.
 def home(request):
     return render(request, 'events/home.template.html')
+    
+def about(request):
+    return render(request, 'events/about.template.html')
 
 def browse(request):
     all_events = Event.objects.all()

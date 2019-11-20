@@ -1,5 +1,29 @@
 {% extends 'base.template.html' %}
 
+{% load static %}
+
+{%block footer_js %}
+
+<script>
+function show() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "block";
+  }
+}
+</script>
+
+{%endblock%}
+
 {%block content%}
 <div class = "main">
 <h1>Your Events History</h1>
@@ -8,13 +32,17 @@
     <img src="{{line_item.event.image.url}}" class="align-self-center mr-3" height="100" width="100">
     <div class="media-body">
         <h5 class="mt-0">{{line_item.event.name}}</h5>
-        <p class="card-text">About Event: {{line_item.event.description}}</p>
-        <p class="card-text">Date: {{line_item.event.date}}</p>
-        <p class="card-text">Time: {{line_item.event.start_time}} to {{line_item.event.end_time}}</p>
-        <p class="card-text">Location: {{line_item.event.location}}</p>
-        {% for t in line_item.event.tags.all %}
-            <h6>{{t.name}}</h6>
-        {%endfor%}
+        <span id="dots"><p class="card-text">About Event:</p></span>
+        <span id="more">
+            <p class="card-text">{{line_item.event.description}}</p>
+            <p class="card-text">Date: {{line_item.event.date}}</p>
+            <p class="card-text">Time: {{line_item.event.start_time}} to {{line_item.event.end_time}}</p>
+            <p class="card-text">Location: {{line_item.event.location}}</p>
+            {% for t in line_item.event.tags.all %}
+                <h6>{{t.name}}</h6>
+            {%endfor%}
+        </span>
+        <button onclick="show()" id="myBtn" class="btn btn-primary">Read More</button>
     </div>
 </div>    
 
