@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 def logout(request):
     auth.logout(request)
     messages.success(request, "Logout Successful")
-    return render(request, 'workshop/home.template.html')
+    return render(request, 'events/home.template.html')
 
 def login(request):
     if request.method == "POST":
@@ -38,7 +38,7 @@ def register(request):
                 messages.success(request, "Welcome! Thank you for registering.")
             else:
                 messages.error(request, "Unable to register at the moment. Please try again later.")
-            return render(request, 'shop/home.template.html')
+            return render(request, 'events/home.template.html')
         else:
             return render(request, "accounts/register.template.html",{
                 'form': form

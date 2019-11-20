@@ -1,0 +1,23 @@
+{% extends 'base.template.html' %}
+
+{%block content %}
+
+<div class = "main">
+<div style='display:flex;justify-content:space-between'>
+
+    {%for workshop in all_workshops %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{workshop.image.url}}" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">{{workshop.name}}</h5>
+            <p class="card-text">{{workshop.description}}</p>
+            <p class="card-text">${{workshop.getCostInDollars}}0</p>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login to Shop</a>
+        </div>
+    </div>
+    {%endfor%}
+
+</div>
+</div>
+
+{%endblock%}
