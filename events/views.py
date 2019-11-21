@@ -4,6 +4,7 @@ from .forms import CreateEventForm
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def home(request):
@@ -14,12 +15,34 @@ def about(request):
 
 def browse(request):
     all_events = Event.objects.all()
-    return render(request, 'events/browse.template.html', {
+    
+    paginator = Paginator(all_events, 3)
+
+    page = request.GET.get('page')
+    try:
+        all_events = paginator.page(page)
+    except PageNotAnInteger:
+        all_events = paginator.page(1)
+    except EmptyPage:
+        all_events = paginator.page(paginator.num_pages)
+    
+    return render(request, 'events/catalog.template.html', {
         'all_events': all_events
     })
 
 def catalog(request):
     all_events = Event.objects.all()
+    
+    paginator = Paginator(all_events, 3)
+
+    page = request.GET.get('page')
+    try:
+        all_events = paginator.page(page)
+    except PageNotAnInteger:
+        all_events = paginator.page(1)
+    except EmptyPage:
+        all_events = paginator.page(paginator.num_pages)
+    
     return render(request, 'events/catalog.template.html', {
         'all_events': all_events
     })
@@ -45,6 +68,16 @@ def createEvent(request):
 def viewCreatedEvents(request):
 
     createdEvents = CreateEvent.objects.all().order_by('-id')
+    
+    paginator = Paginator(createdEvents, 3)
+
+    page = request.GET.get('page')
+    try:
+        createdEvents = paginator.page(page)
+    except PageNotAnInteger:
+        createdEvents = paginator.page(1)
+    except EmptyPage:
+        createdEvents = paginator.page(paginator.num_pages)
 
     return render(request, "events/view_event.template.html", {"createdEvents": createdEvents})
 

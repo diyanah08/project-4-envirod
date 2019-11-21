@@ -4,7 +4,12 @@
 
 {%block footer_js %}
 
-<script src="{% static 'js/script.js' %}"></script>
+<script>
+$(document).ready(function(){
+    $("#myToast").toast({ autohide: false });
+    $("#myToast").toast('show');
+});
+</script>
 
 {%endblock%}
 
@@ -37,14 +42,18 @@
 <div class="bs-example">
     <div class="toast" id="myToast" style="position: absolute; top: 75px; right: 200px;">
         <div class="toast-header">
-            <strong class="mr-auto"><i class="fa fa-grav"></i> We miss you!</strong>
-            <small>11 mins ago</small>
+            <strong class="mr-auto"><i class="fa fa-grav"></i>Added to Cart!</strong>
             <a href="{% url "catalog" %}"><button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
                 <span aria-hidden="true">&times;</span>
             </button></a>
         </div>
         <div class="toast-body">
-            <div>It's been a long time since you visited us. We've something special for you. <a href="#" class="btn btn-primary">Click here!</a></div>
+            <h5>Cart Items</h5>
+            {%for cart_item in all_cart_items %}
+                <p>{{cart_item.event.name}} x {{cart_item.quantity }}</p>
+            {%endfor%}
+            <a href="{% url "view" %}" class="btn btn-primary">Checkout!</a>
+            <p>or <a href="{% url "catalog" %}">close</a> to continue shopping</p>
         </div>
     </div>
 </div>

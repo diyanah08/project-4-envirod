@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.utils import timezone
 from cart.models import CartItem
 import stripe
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def calculate_cart_cost(request):
     all_cart_items = CartItem.objects.filter(owner=request.user)
@@ -19,10 +19,11 @@ def calculate_cart_cost(request):
 # Create your views here.
 def payment_form(request):
     total_cost = calculate_cart_cost(request)
-   
+    all_cart_items = CartItem.objects.filter(owner=request.user)
         
     return render(request, 'payment/payment_form.template.html', {
-        'total_cost':total_cost/100
+        'total_cost':total_cost/100,
+        'all_cart_items':all_cart_items
     })
     
 def pay(request):
@@ -125,6 +126,17 @@ def pay(request):
             
 def events_history(request):
     line_items = LineItem.objects.filter(owner=request.user)
+    
+    paginator = Paginator(line_items, 3)
+
+    page = request.GET.get('page')
+    try:
+        line_items = paginator.page(page)
+    except PageNotAnInteger:
+        line_items = paginator.page(1)
+    except EmptyPage:
+        line_items = paginator.page(paginator.num_pages)
+    
     return render(request, 'accounts/history.template.html', {
         'line_items' : line_items
     })

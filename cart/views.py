@@ -25,8 +25,10 @@ def add_to_cart(request, event_id):
         existing_cart_item.save()
     
     all_events = Event.objects.all()
+    all_cart_items = CartItem.objects.filter(owner=request.user)
     return render(request, 'events/added.template.html', {
-        'all_events': all_events
+        'all_events' : all_events,
+        'all_cart_items':all_cart_items
     })
     
 def remove_from_cart(request, cart_item_id):

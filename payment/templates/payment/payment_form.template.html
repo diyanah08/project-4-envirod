@@ -4,8 +4,11 @@
 <div class = "main">
     <form method='GET' action='{% url 'pay' %}'>
         {% csrf_token %}
-        <label>Amount to Pay:</label>
-        <p>${{total_cost}}0</p>
+        <h5>Cart Items:</h5>
+            {%for cart_item in all_cart_items %}
+                <p>{{cart_item.event.name}} x {{cart_item.quantity }}</p>
+            {%endfor%}
+        <h5>Total Amount to Pay: ${{total_cost}}0</h5>
         <input type='submit' class="btn btn-primary" value='Proceed to Payment'/>
     </form>
 </div>
