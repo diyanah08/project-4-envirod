@@ -33,11 +33,12 @@ class Tag(models.Model):
         return self.name
         
 class CreateEvent(models.Model):
+    
     name = models.CharField(max_length=225, blank=False)
     phone_number = models.CharField(max_length=225, blank=False)
     event_title = models.CharField(max_length=225, blank=False)
     description = models.TextField(blank=False)
-    cost = models.IntegerField(blank=False)
+    cost_per_pax = models.IntegerField(blank=False)
     seats = models.IntegerField(blank=False, default=0)
     date = models.DateField()
     start_time = models.TimeField()
@@ -49,4 +50,4 @@ class CreateEvent(models.Model):
         return self.name + " : " + self.phone_number + " [ " + self.event_title + " - " + str(self.date) + " , " + str(self.start_time) + " ] "
         
     def getCostInDollars(self):
-        return self.cost * 100
+        return self.cost_per_pax * 100

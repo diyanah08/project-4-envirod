@@ -2,23 +2,44 @@
 
 {%block content%}
 <div class = "main">
-{%for each_content in contents %}
+{%for each_event in createdEvents %}
 <div>
-<h1>{{ each_content.event_title }}</h1>
-<p>Description: {{ each_content.description }}</p>
-<p>Name : {{ each_content.name }}</p>
-<p>Telephone: {{ each_content.phone_number }}</p>
-<p>Cost: {{ each_content.cost }}</p>
-<p>Seats Needed: {{ each_content.seats }}</p>
-<p>Date [YYYY-MM-DD]: {{ each_content.date }}</p>
-<p>Start Time [HH:MM:SS]: {{ each_content.start_time }}</p>
-<p>Duration: {{ each_content.hours_needed }}</p>
-<p>Location: {{ each_content.location }}</p>
-{% for t in event.tags.all %}
-            <p>{{t.name}}</p>
-            {%endfor%}
-<a href="{% url 'edit_event' name_id=name.id %}" class="btn btn-primary">Edit Event</a>
+<h1>{{ each_event.event_title }}</h1>
+<p>Description: {{ each_event.description }}</p>
+<p>Name : {{ each_event.name }}</p>
+<p>Telephone: {{ each_event.phone_number }}</p>
+<p>Cost: ${{ each_event.cost_per_pax }}.00</p>
+<p>Seats Needed: {{ each_event.seats }}</p>
+<p>Date: {{ each_event.date }}</p>
+<p>Start Time: {{ each_event.start_time }}</p>
+<p>Duration: {{ each_event.hours_needed }}h</p>
+<p>Location: {{ each_event.location }}</p>
+    {% for t in each_event.tags.all %}
+        <p>{{t.name}}</p>
+    {%endfor%}
+<a href="/events/edit_event/{{each_event.id}}" class="btn btn-primary">Edit</a> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-info" data-whatever="@mdo">Delete</button>
+
+<div class="modal fade" id="delete-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                <button type="button" class="button close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="confirm Message" class="col-form-label"><h6>Confirm Delete?</h6></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="/events/delete_event/{{each_event.id}}" class="btn btn-primary">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 {%endfor%}
 </div>
+
 {%endblock%}
