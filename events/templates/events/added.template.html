@@ -31,7 +31,6 @@ $(document).ready(function(){
             {% for t in event.tags.all %}
             <h6>{{t.name}}</h6>
             {%endfor%}
-            <a href="{% url 'add_to_cart' event_id=event.id %}" class="btn btn-primary">View</a>
         </div>
     </div>
     {%endfor%}

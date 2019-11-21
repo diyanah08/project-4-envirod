@@ -1,22 +1,31 @@
 {% extends 'base.template.html' %}
 
+{% load crispy_forms_tags %}
+
 {%block content %}
 
 <div class = "main">
+    
+<form method="get">
+    {{ filter.form | crispy }}
+    <button type="submit">Search</button>
+</form>
+
 <div style='display:flex;justify-content:space-between'>
 
-    {%for event in all_events %}
+    {% for event in filter.qs %}
     <div class="card" style="width: 18rem;">
         <img src="{{event.image.url}}" class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">{{event.name}}</h5>
             <p class="card-text">About Event: {{event.description}}</p>
-            <p class="card-text">Cost: ${{event.getCostInDollars}}0</p>
+            <p class="card-text">Date: {{event.date}}</p>
+            <p class="card-text">Time: {{event.start_time}} to {{event.end_time}}</p>
             <p class="card-text">Location: {{event.location}}</p>
-            <p class="card-text">Seats Left: {{event.quantity}}</p>
             {% for t in event.tags.all %}
             <h6>{{t.name}}</h6>
             {%endfor%}
+            
             <a href="{% url 'login' %}" class="btn btn-primary">Login to Register</a>
         </div>
     </div>
@@ -28,7 +37,7 @@
     <span class="step-links">
         {% if all_events.has_previous %}
             <a href="?page=1">first |  </a>
-            <a href="?page={{ posts.previous_page_number }}">previous</a>
+            <a href="?page={{ all_events.previous_page_number }}">previous</a>
         {% endif %}
     
         <span class="current">
@@ -38,6 +47,7 @@
         <a href="?page={{ all_events.paginator.num_pages }}">last</a> {% endif %}
     </span>
 </div>
+
 </div>
 
 {%endblock%}

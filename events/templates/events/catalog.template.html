@@ -5,9 +5,14 @@
 {%block content %}
 
 <div class = "main">
+<form method="get">
+    {{ filter.form | crispy }}
+    <button type="submit">Search</button>
+</form>
+
 <div style='display:flex;justify-content:space-between'>
 
-    {%for event in all_events %}
+    {% for event in filter.qs %}
     <div class="card" style="width: 18rem;">
         <img src="{{event.image.url}}" class="card-img-top">
         <div class="card-body">
@@ -22,7 +27,7 @@
             <h6>{{t.name}}</h6>
             {%endfor%}
             
-            <a href="{% url 'add_to_cart' event_id=event.id %}" class="btn btn-primary">View</a>
+            <a href="{% url 'add_to_cart' event_id=event.id %}" class="btn btn-primary">Register</a>
         </div>
     </div>
     {%endfor%}
@@ -33,7 +38,7 @@
     <span class="step-links">
         {% if all_events.has_previous %}
             <a href="?page=1">first |  </a>
-            <a href="?page={{ posts.previous_page_number }}">previous</a>
+            <a href="?page={{ all_events.previous_page_number }}">previous</a>
         {% endif %}
     
         <span class="current">
