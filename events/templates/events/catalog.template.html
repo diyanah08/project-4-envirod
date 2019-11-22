@@ -11,8 +11,8 @@
 </form>
 
 <div class="row">
-    {% for event in all_events %}
-      <div class="col-sm-4">
+    {% for event in filter.qs %}
+      <div class="col-sm-3 mb-3 mt-2">
         <div class="card" style="height: 100%;">
             <img src="{{event.image.url}}" class="card-img-top">
             <div class="card-body">
@@ -33,21 +33,22 @@
     {%endfor%}
 </div>
 
+{% if response.has_other_pages %}
 <div class="pagination">
     <span class="step-links">
-        {% if all_events.has_previous %}
+        {% if response.has_previous %}
             &nbsp; <a href="?page=1">First</a>&nbsp; |
-            &nbsp; <a href="?page={{ all_events.previous_page_number }}">Previous</a>&nbsp; 
+            &nbsp; <a href="?page={{ response.previous_page_number }}">Previous</a>&nbsp; 
         {% endif %}
     
         <span class="current">
-            Page {{ all_events.number }} of {{ all_events.paginator.num_pages }}
-        </span> {% if all_events.has_next %}
-        &nbsp; <a href="?page={{ all_events.next_page_number }}">Next</a>&nbsp; |
-        &nbsp; <a href="?page={{ all_events.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
+            Page {{ response.number }} of {{ response.paginator.num_pages }}
+        </span> {% if response.has_next %}
+        &nbsp; <a href="?page={{ response.next_page_number }}">Next</a>&nbsp; |
+        &nbsp; <a href="?page={{ response.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
     </span>
 </div>
-
+{% endif %}
 </div>
 
 {%endblock%}

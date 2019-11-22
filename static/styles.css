@@ -153,8 +153,8 @@ form {
 
 /*card styles*/
 
-.card {
-    margin: 10px;
+.card-img-top {
+    height: 300px;
 }
 
 .pagination {

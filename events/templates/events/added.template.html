@@ -20,7 +20,7 @@ $(document).ready(function(){
 <div class="row">
     {% for event in filter.qs %}
       <div class="col-sm-4">
-        <div class="card">
+        <div class="card mb-3 mt-2">
             <img src="{{event.image.url}}" class="card-img-top">
             <div class="card-body">
                 {% for t in event.tags.all %}

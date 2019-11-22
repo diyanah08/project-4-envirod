@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from . import filters
 from .filters import EventFilter
 
 # Create your views here.
@@ -19,7 +20,7 @@ def browse(request):
     event_filter = EventFilter(request.GET, queryset=all_events)
     
     
-    paginator = Paginator(all_events, 3)
+    paginator = Paginator(all_events, 4)
 
     page = request.GET.get('page')
     try:
@@ -37,22 +38,28 @@ def browse(request):
 def catalog(request):
     all_events = Event.objects.all()
     event_filter = EventFilter(request.GET, queryset=all_events)
+    filtered_qs = filters.EventFilter(
+                      request.GET, 
+                      queryset=all_events
+                  ).qs
     
-    
-    paginator = Paginator(all_events, 3)
+    paginator = Paginator(filtered_qs, 4)
 
     page = request.GET.get('page')
     try:
-        all_events = paginator.page(page)
+        response = paginator.page(page)
     except PageNotAnInteger:
-        all_events = paginator.page(1)
+        response = paginator.page(1)
     except EmptyPage:
-        all_events = paginator.page(paginator.num_pages)
+        response = paginator.page(paginator.num_pages)
     
     return render(request, 'events/catalog.template.html', {
+        'paginator': paginator,
         'filter': event_filter,
-        'all_events' : all_events
+        'filtered': filtered_qs,
+        'response' : response
     })
+
 
     
 def createEvent(request):
@@ -75,7 +82,7 @@ def createEvent(request):
 
 def viewCreatedEvents(request):
 
-    createdEvents = CreateEvent.objects.all().order_by('-id')
+    createdEvents = CreateEvent.objects.all().order_by('date')
     
     paginator = Paginator(createdEvents, 3)
 
