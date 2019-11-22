@@ -18,21 +18,26 @@ def about(request):
 def browse(request):
     all_events = Event.objects.all()
     event_filter = EventFilter(request.GET, queryset=all_events)
+    filtered_qs = filters.EventFilter(
+                      request.GET, 
+                      queryset=all_events
+                  ).qs
     
-    
-    paginator = Paginator(all_events, 4)
+    paginator = Paginator(filtered_qs, 3)
 
     page = request.GET.get('page')
     try:
-        all_events = paginator.page(page)
+        response = paginator.page(page)
     except PageNotAnInteger:
-        all_events = paginator.page(1)
+        response = paginator.page(1)
     except EmptyPage:
-        all_events = paginator.page(paginator.num_pages)
+        response = paginator.page(paginator.num_pages)
     
-    return render(request, 'events/browse.template.html', {
+    return render(request, 'events/catalog.template.html', {
+        'paginator': paginator,
         'filter': event_filter,
-        'all_events' : all_events
+        'filtered': filtered_qs,
+        'response' : response
     })
 
 def catalog(request):
@@ -43,7 +48,7 @@ def catalog(request):
                       queryset=all_events
                   ).qs
     
-    paginator = Paginator(filtered_qs, 4)
+    paginator = Paginator(filtered_qs, 3)
 
     page = request.GET.get('page')
     try:

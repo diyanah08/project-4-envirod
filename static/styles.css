@@ -128,12 +128,22 @@ form {
     -ms-flex: 2;
     flex: 2;
     margin: 10px 160px;
+    font-family: 'Acme', sans-serif;
 }
 
 #address {
     position: static;
     text-align: center;
     margin-top: 30px;
+}
+
+#address h5 {
+    color: #307D7E;
+}
+
+.direction {
+    text-decoration: none;
+    color: black;
 }
 
 
@@ -154,7 +164,7 @@ form {
 /*card styles*/
 
 .card-img-top {
-    height: 300px;
+    height: 400px;
 }
 
 .pagination {

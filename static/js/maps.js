@@ -2,22 +2,22 @@
 
 
 let places = [{
-        'name': "Shop 1",
+        'name': "EnviroD Space @ PLQ",
         'position': [103.8937, 1.3180],
-        'image': '',
-        'description': "Details"
+        'link': 'https://goo.gl/maps/sdzDJvGw77TWBk5X8',
+        'description': "10 Paya Lebar Rd, #05-01/02, Singapore 409057"
     },
     {
-        'name': "Shop 2",
+        'name': "EnviroD Space @ 313",
         'position': [103.8384, 1.3009],
-        'image': '',
-        'description': "Details"
+        'link': 'https://goo.gl/maps/5KUbvCQT1ZBjRLwFA',
+        'description': "313 Orchard Rd, #06-11/12/13, Singapore 238895"
     },
     {
-        'name': 'Shop 3',
+        'name': 'EnviroD Space @ Junction 8',
         'position': [103.8486, 1.3505],
-        'image': '',
-        'description': "Details"
+        'link': 'https://goo.gl/maps/An9c9qNZkw1P91dq8',
+        'description': "9 Bishan Pl, #05-23/24, Singapore 579837"
     }
 ]
 
@@ -38,8 +38,9 @@ for (let each_place of places) {
         offset: 25
     });
     m.setLngLat(each_place.position);
-    p.setHTML(`<h1>${each_place.name}</h1>
-                <p>${each_place.description}</p>`);
+    p.setHTML(`<h5>${each_place.name}</h5>
+                <p>${each_place.description}</p>
+                <a href = "${each_place.link}" target="_blank" class = "direction">Directions</a>`);
     m.setPopup(p);
     m.addTo(map);
 }
