@@ -13,7 +13,7 @@
 <div class="row">
     {% for event in all_events %}
       <div class="col-sm-4">
-        <div class="card">
+        <div class="card" style="height: 100%;">
             <img src="{{event.image.url}}" class="card-img-top">
             <div class="card-body">
                 {% for t in event.tags.all %}
@@ -36,15 +36,15 @@
 <div class="pagination">
     <span class="step-links">
         {% if all_events.has_previous %}
-            <a href="?page=1">first |  </a>
-            <a href="?page={{ all_events.previous_page_number }}">previous</a>
+            &nbsp; <a href="?page=1">First</a>&nbsp; |
+            &nbsp; <a href="?page={{ all_events.previous_page_number }}">Previous</a>&nbsp; 
         {% endif %}
     
         <span class="current">
             Page {{ all_events.number }} of {{ all_events.paginator.num_pages }}
         </span> {% if all_events.has_next %}
-        <a href="?page={{ all_events.next_page_number }}">next |  </a>
-        <a href="?page={{ all_events.paginator.num_pages }}">last</a> {% endif %}
+        &nbsp; <a href="?page={{ all_events.next_page_number }}">Next</a>&nbsp; |
+        &nbsp; <a href="?page={{ all_events.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
     </span>
 </div>
 

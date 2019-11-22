@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class = "main">
+<h1>Cart Items</h1>
 <a href="{% url 'payment_form' %}" class="btn btn-primary">Check Out</a>
 {%for cart_item in all_cart_items %}
 
