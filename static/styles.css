@@ -25,10 +25,11 @@ body{
     width: 100%;
     position: relative;
     bottom: 0;
-    padding: 20px;
+    padding: 20px 40px;
+    text-align: right;
     background-color: rgba(217,228,230, 0.25) !important;
     font-family: 'Special Elite', cursive;
-    font-weight: bolder;
+    color: #307D7E;
 }
 
 h1 {
@@ -105,6 +106,20 @@ h1 {
     color: black;
 }
 
+/*home page styles*/
+
+.welcome {
+    text-align: center;
+    margin: 25px 150px;
+}
+
+/*about page styles*/
+
+.about{
+    align-content: center;
+    text-align: center;
+    margin: 15px 200px;
+}
 
 /*form styles*/
 
