@@ -150,3 +150,9 @@ form {
     padding: 0px 3px;
     margin-bottom: 20px;
 }
+
+/*card styles*/
+
+.card {
+    margin: 10px;
+}

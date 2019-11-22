@@ -10,28 +10,27 @@
     <button type="submit">Search</button>
 </form>
 
-<div style='display:flex;justify-content:space-between'>
-
-    {% for event in filter.qs %}
-    <div class="card" style="width: 18rem;">
-        <img src="{{event.image.url}}" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">{{event.name}}</h5>
-            <p class="card-text">About Event: {{event.description}}</p>
-            <p class="card-text">Cost: ${{event.getCostInDollars}}0</p>
-            <p class="card-text">Date: {{event.date}}</p>
-            <p class="card-text">Time: {{event.start_time}} to {{event.end_time}}</p>
-            <p class="card-text">Location: {{event.location}}</p>
-            <p class="card-text">Seats Available: {{event.quantity}}</p>
-            {% for t in event.tags.all %}
-            <h6>{{t.name}}</h6>
-            {%endfor%}
-            
-            <a href="{% url 'add_to_cart' event_id=event.id %}" class="btn btn-primary">Register</a>
+<div class="row">
+    {% for event in all_events %}
+      <div class="col-sm-4">
+        <div class="card">
+            <img src="{{event.image.url}}" class="card-img-top">
+            <div class="card-body">
+                {% for t in event.tags.all %}
+                    <h6>{{t.name}}</h6>
+                {%endfor%}
+                <h5 class="card-title">{{event.name}}</h5>
+                <p class="card-text">About Event: {{event.description}}</p>
+                <p class="card-text">Cost: ${{event.getCostInDollars}}0</p>
+                <p class="card-text">Date: {{event.date}}</p>
+                <p class="card-text">Time: {{event.start_time}} to {{event.end_time}}</p>
+                <p class="card-text">Location: {{event.location}}</p>
+                <p class="card-text">Seats Available: {{event.quantity}}</p>
+                <a href="{% url 'add_to_cart' event_id=event.id %}" class="btn btn-primary">Register</a>
+            </div>
         </div>
-    </div>
+      </div>
     {%endfor%}
-
 </div>
 
 <div class="pagination">

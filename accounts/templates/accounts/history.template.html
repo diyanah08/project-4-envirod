@@ -34,13 +34,13 @@ function show() {
         <h5 class="mt-0">{{line_item.event.name}}</h5>
         <span id="dots"><p class="card-text">About Event:</p></span>
         <span id="more">
+            {% for t in line_item.event.tags.all %}
+                <h6>{{t.name}}</h6>
+            {%endfor%}
             <p class="card-text">{{line_item.event.description}}</p>
             <p class="card-text">Date: {{line_item.event.date}}</p>
             <p class="card-text">Time: {{line_item.event.start_time}} to {{line_item.event.end_time}}</p>
             <p class="card-text">Location: {{line_item.event.location}}</p>
-            {% for t in line_item.event.tags.all %}
-                <h6>{{t.name}}</h6>
-            {%endfor%}
         </span>
         <button onclick="show()" id="myBtn" class="btn btn-primary">Read More</button>
     </div>
