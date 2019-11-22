@@ -33,7 +33,7 @@ def browse(request):
     except EmptyPage:
         response = paginator.page(paginator.num_pages)
     
-    return render(request, 'events/catalog.template.html', {
+    return render(request, 'events/browse.template.html', {
         'paginator': paginator,
         'filter': event_filter,
         'filtered': filtered_qs,

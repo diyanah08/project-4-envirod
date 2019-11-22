@@ -19,20 +19,15 @@ $(document).ready(function(){
     
 <div class="row">
     {% for event in all_events %}
-      <div class="col-sm-4">
-        <div class="card mb-3 mt-2">
+      <div class="col-sm-4 mb-3 mt-2">
+        <div class="card" style="height: 100%;">
             <img src="{{event.image.url}}" class="card-img-top">
             <div class="card-body">
                 {% for t in event.tags.all %}
-                    <h6>{{t.name}}</h6>
+                    <p class="card-text-info">{{t.name}}</p>
                 {%endfor%}
                 <h5 class="card-title">{{event.name}}</h5>
-                <p class="card-text">About Event: {{event.description}}</p>
-                <p class="card-text">Cost: ${{event.getCostInDollars}}0</p>
-                <p class="card-text">Date: {{event.date}}</p>
-                <p class="card-text">Time: {{event.start_time}} to {{event.end_time}}</p>
-                <p class="card-text">Location: {{event.location}}</p>
-                <p class="card-text">Seats Available: {{event.quantity}}</p>
+                <a href="{% url 'catalog' %}" class="btn btn-primary">Back to Events</a>
             </div>
         </div>
       </div>

@@ -17,15 +17,16 @@
             <img src="{{event.image.url}}" class="card-img-top">
             <div class="card-body">
                 {% for t in event.tags.all %}
-                    <h6>{{t.name}}</h6>
+                    <p class="card-text-info">{{t.name}}</p>
                 {%endfor%}
                 <h5 class="card-title">{{event.name}}</h5>
-                <p class="card-text">About Event: {{event.description}}</p>
-                <p class="card-text">Cost: ${{event.getCostInDollars}}0</p>
-                <p class="card-text">Date: {{event.date}}</p>
-                <p class="card-text">Time: {{event.start_time}} to {{event.end_time}}</p>
-                <p class="card-text">Location: {{event.location}}</p>
-                <p class="card-text">Seats Available: {{event.quantity}}</p>
+                <p class="card-text">About Event:</p>
+                <p class="card-text-info">{{event.description}}</p>
+                <p class="card-text">Cost: <span class = "card-text-info">${{event.getCostInDollars}}0</span></p>
+                <p class="card-text">Date: <span class = "card-text-info">{{event.date}}</span></p>
+                <p class="card-text">Time: <span class = "card-text-info">{{event.start_time}} to {{event.end_time}}</span></p>
+                <p class="card-text">Location: <span class = "card-text-info">{{event.location}}</span></p>
+                <p class="card-text">Seats Available: <span class = "card-text-info">{{event.quantity}}</span></p>
                 <a href="{% url 'add_to_cart' event_id=event.id %}" class="btn btn-primary">Register</a>
             </div>
         </div>
