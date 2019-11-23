@@ -19,7 +19,7 @@ def login(request):
                                      password=request.POST['password'])
             if user:
                 auth.login(user=user, request=request)
-                return redirect(reverse('profile'))
+                return redirect(reverse('catalog'))
     else:
         form = UserLoginForm()
         return render(request, 'accounts/login.template.html', {

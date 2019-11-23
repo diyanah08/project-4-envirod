@@ -108,6 +108,11 @@ h1 {
 
 /*home page styles*/
 
+.bd-example {
+    padding: 0px 3px;
+    margin-bottom: 20px;
+}
+
 .welcome {
     text-align: center;
     margin: 25px 150px;
@@ -166,14 +171,6 @@ form {
 
 #more {
     display: none;
-}
-
-
-/*cart styles*/
-
-.bd-example {
-    padding: 0px 3px;
-    margin-bottom: 20px;
 }
 
 /*card styles*/
