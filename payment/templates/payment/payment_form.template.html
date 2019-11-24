@@ -4,7 +4,7 @@
 <div class = "main">
     <form method='GET' action='{% url 'pay' %}'>
         {% csrf_token %}
-        <h5>Cart Items:</h5>
+        <h1>Cart Items:</h1>
             {%for cart_item in all_cart_items %}
                 <p>{{cart_item.event.name}} x {{cart_item.quantity }}</p>
             {%endfor%}

@@ -40,6 +40,22 @@ h1 {
     margin-left: 30px;
 }
 
+p {
+    letter-spacing: 2px;
+}
+
+.btn {
+    margin: 0px 10px 5px 0px;
+}
+
+.button {
+    margin-top: 15px;
+}
+
+.pagination {
+    margin: 15px;
+    padding-left: 30px;
+}
 
 /*navbar styles*/
 
@@ -178,11 +194,21 @@ form {
     font-size: 15px;
 }
 
+/*profile page*/
+
+.profile {
+    margin-left: 40px;
+}
+
 
 /*history styles*/
 
 #more {
     display: none;
+}
+
+.media {
+    margin: 20px 30px;
 }
 
 /*card styles*/
@@ -208,6 +234,19 @@ form {
     color: #5ea058;
 }
 
-.pagination {
-    margin: 15px;
+/*cart styles*/
+
+.checkout {
+    margin-bottom: 30px;
+    margin-right: 40px;
+    margin-left: 30px;
+}
+
+
+/*created events styles*/
+
+.event {
+    padding: 20px 40px;
+    margin: 20px 30px;
+    border: 2px teal dashed;
 }

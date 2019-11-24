@@ -4,20 +4,20 @@
 <div class = "main">
 <h1>Your Created Events</h1>
 {%for each_event in createdEvents %}
-<div>
-<h1>{{ each_event.event_title }}</h1>
-<p>Description: {{ each_event.description }}</p>
-<p>Name : {{ each_event.name }}</p>
-<p>Telephone: {{ each_event.phone_number }}</p>
-<p>Cost: ${{ each_event.cost_per_pax }}.00</p>
-<p>Seats Needed: {{ each_event.seats }}</p>
-<p>Date: {{ each_event.date }}</p>
-<p>Start Time: {{ each_event.start_time }}</p>
-<p>Duration: {{ each_event.hours_needed }}h</p>
-<p>Location: {{ each_event.location }}</p>
+<div class= "event">
     {% for t in each_event.tags.all %}
         <p>{{t.name}}</p>
     {%endfor%}
+<h4 class = "card-title">{{ each_event.event_title }}</h4>
+<p class="card-text">Description: <span class="card-text-info">{{ each_event.description }}</span></p>
+<p class="card-text">Name : <span class="card-text-info">{{ each_event.name }}</span></p>
+<p class="card-text">Telephone: <span class="card-text-info">{{ each_event.phone_number }}</span></p>
+<p class="card-text">Cost: <span class="card-text-info">${{ each_event.cost_per_pax }}.00</span></p>
+<p class="card-text">Seats Needed: <span class="card-text-info">{{ each_event.seats }}</span></p>
+<p class="card-text">Date: <span class="card-text-info">{{ each_event.date }}</span></p>
+<p class="card-text">Start Time: <span class="card-text-info">{{ each_event.start_time }}</span></p>
+<p class="card-text">Duration: <span class="card-text-info">{{ each_event.hours_needed }}h</span></p>
+<p class="card-text">Location: <span class="card-text-info">{{ each_event.location }}</span></p>
 <a href="/events/edit_event/{{each_event.id}}" class="btn btn-primary">Edit</a> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-info" data-whatever="@mdo">Delete</button>
 
 <div class="modal fade" id="delete-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

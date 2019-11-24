@@ -12,11 +12,11 @@ function show() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "Read more";
+    btnText.innerHTML = "Read More";
     moreText.style.display = "none";
   } else {
     dots.style.display = "none";
-    btnText.innerHTML = "Read less";
+    btnText.innerHTML = "Read Less";
     moreText.style.display = "block";
   }
 }
@@ -31,18 +31,18 @@ function show() {
 <div class="media">
     <img src="{{line_item.event.image.url}}" class="align-self-center mr-3" height="100" width="100">
     <div class="media-body">
-        <h5 class="mt-0">{{line_item.event.name}}</h5>
+        <h5 class="mt-0 card-title">{{line_item.event.name}}</h5>
         <span id="dots"><p class="card-text">About Event:</p></span>
         <span id="more">
             {% for t in line_item.event.tags.all %}
                 <h6>{{t.name}}</h6>
             {%endfor%}
-            <p class="card-text">{{line_item.event.description}}</p>
-            <p class="card-text">Date: {{line_item.event.date}}</p>
-            <p class="card-text">Time: {{line_item.event.start_time}} to {{line_item.event.end_time}}</p>
-            <p class="card-text">Location: {{line_item.event.location}}</p>
+            <p class="card-text">About Event: <span class="card-text-info">{{line_item.event.description}}</span></p>
+            <p class="card-text">Date: <span class="card-text-info">{{line_item.event.date}}</span></p>
+            <p class="card-text">Time: <span class="card-text-info">{{line_item.event.start_time}} to {{line_item.event.end_time}}</span></p>
+            <p class="card-text">Location: <span class="card-text-info">{{line_item.event.location}}</span></span></p>
         </span>
-        <button onclick="show()" id="myBtn" class="btn btn-primary">Read More</button>
+        <button onclick="show()" id="myBtn" class="btn btn-primary button">Read More</button>
     </div>
 </div>    
 
