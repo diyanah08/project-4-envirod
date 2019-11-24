@@ -26,7 +26,7 @@ mapboxgl.accessToken = "pk.eyJ1IjoiZGl5YW5haDA4IiwiYSI6ImNrMHlwam9pNzBoc2QzYnA4Z
 let mapOptions = {
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', 
-    center: [103.8198, 1.3521], 
+    center: [103.8563, 1.3343], 
     zoom: 11, 
 };
 let map = new mapboxgl.Map(mapOptions);
@@ -38,8 +38,8 @@ for (let each_place of places) {
         offset: 25
     });
     m.setLngLat(each_place.position);
-    p.setHTML(`<h5>${each_place.name}</h5>
-                <p>${each_place.description}</p>
+    p.setHTML(`<h5 class = "card-text">${each_place.name}</h5>
+                <p class = "direction">${each_place.description}</p>
                 <a href = "${each_place.link}" target="_blank" class = "direction">Directions</a>`);
     m.setPopup(p);
     m.addTo(map);
