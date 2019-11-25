@@ -136,6 +136,15 @@ p {
     margin: 25px 150px;
 }
 
+.carousel-caption {
+    position: absolute;
+    right: 30px;
+    left: 0px;
+    width: 100%;
+    color: black;
+    background-color: rgba(217,228,230, 0.95);
+}
+
 /*about page styles*/
 
 .about{
