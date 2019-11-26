@@ -5,6 +5,7 @@
 {%block content%}
 <div class = "main">
 <h1>Hold An Event at EnviroD</h1>
+<p class = "event">Fill the form below and let us know a little about the event you would like to hold at EnviroD. We will contact you as soon as we can to iron out the details.</p>
 <form method="POST">
   {% csrf_token %}
   {{ form | crispy }}
