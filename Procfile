@@ -1,1 +1,1 @@
-web: gunicorn envirod.wsgi:application
+web: gunicorn EnviroD.wsgi:application
