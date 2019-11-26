@@ -136,6 +136,10 @@ p {
     margin: 25px 150px;
 }
 
+.welcome h1 {
+    margin-left: 0px;
+}
+
 .carousel-caption {
     position: absolute;
     right: 30px;
@@ -258,4 +262,13 @@ form {
     padding: 20px 40px;
     margin: 20px 30px;
     border: 2px teal dashed;
+}
+
+
+/*media queries*/
+
+@media (max-width: 767px) {
+    .welcome {
+        margin: 25px;
+    }
 }
