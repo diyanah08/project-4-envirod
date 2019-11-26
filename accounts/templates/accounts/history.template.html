@@ -1,55 +1,33 @@
-{% extends 'base.template.html' %}
-
-{% load static %}
-
-{%block footer_js %}
-
-<script>
-function show() {
-  var dots = document.getElementById("dots");
-  var moreText = document.getElementById("more");
-  var btnText = document.getElementById("myBtn");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = "Read More";
-    moreText.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "Read Less";
-    moreText.style.display = "block";
-  }
-}
-</script>
-
-{%endblock%}
+{% extends 'base.template.html' %} {% load static %}
 
 {%block content%}
-<div class = "main">
-<h1>Your Events History</h1>
-{%for line_item in line_items %}
-<div class="media">
-    <img src="{{line_item.event.image.url}}" class="align-self-center mr-3" height="100" width="100">
-    <div class="media-body">
-        <h5 class="mt-0 card-title">{{line_item.event.name}}</h5>
-        <span id="dots"><p class="card-text">About Event:</p></span>
-        <span id="more">
-            {% for t in line_item.event.tags.all %}
-                <h6>{{t.name}}</h6>
-            {%endfor%}
-            <p class="card-text">About Event: <span class="card-text-info">{{line_item.event.description}}</span></p>
-            <p class="card-text">Date: <span class="card-text-info">{{line_item.event.date}}</span></p>
-            <p class="card-text">Time: <span class="card-text-info">{{line_item.event.start_time}} to {{line_item.event.end_time}}</span></p>
-            <p class="card-text">Location: <span class="card-text-info">{{line_item.event.location}}</span></span></p>
-        </span>
-        <button onclick="show()" id="myBtn" class="btn btn-primary button">Read More</button>
+<div class="main">
+    <h1>Your Events History</h1>
+    {%for line_item in line_items %}
+    <div class="media">
+        <img src="{{line_item.event.image.url}}" class="align-self-center mr-3" height="100" width="100">
+        <div class="media-body">
+            <h5 class="mt-0 card-title">{{line_item.event.name}}</h5>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> About Event: </button>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    {% for t in line_item.event.tags.all %}
+                    <h6>{{t.name}}</h6>
+                    {%endfor%}
+                    <p class="card-text">About Event: <span class="card-text-info">{{line_item.event.description}}</span></p>
+                    <p class="card-text">Date: <span class="card-text-info">{{line_item.event.date}}</span></p>
+                    <p class="card-text">Time: <span class="card-text-info">{{line_item.event.start_time}} to {{line_item.event.end_time}}</span></p>
+                    <p class="card-text">Location: <span class="card-text-info">{{line_item.event.location}}</span></span>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>    
 
-{%endfor%}
+    {%endfor%}
 
-<div class="pagination">
-    <span class="step-links">
+    <div class="pagination">
+        <span class="step-links">
         {% if line_items.has_previous %}
             &nbsp; <a href="?page=1">First</a>&nbsp; |
             &nbsp; <a href="?page={{ posts.previous_page_number }}">Previous</a>&nbsp; 
@@ -57,11 +35,9 @@ function show() {
     
         <span class="current">
             Page {{ line_items.number }} of {{ line_items.paginator.num_pages }}
-        </span> {% if line_items.has_next %}
-        &nbsp; <a href="?page={{ line_items.next_page_number }}">Next</a>&nbsp; |
-        &nbsp; <a href="?page={{ line_items.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
-    </span>
-</div>
+        </span> {% if line_items.has_next %} &nbsp; <a href="?page={{ line_items.next_page_number }}">Next</a>&nbsp; | &nbsp; <a href="?page={{ line_items.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
+        </span>
+    </div>
 
 </div>
 
