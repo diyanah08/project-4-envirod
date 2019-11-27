@@ -16,7 +16,6 @@ def calculate_cart_cost(request):
         
     return amount
 
-# Create your views here.
 def payment_form(request):
     total_cost = calculate_cart_cost(request)
     all_cart_items = CartItem.objects.filter(owner=request.user)
@@ -38,6 +37,7 @@ def pay(request):
         transaction.date = timezone.now()
         transaction.save()
         
+        # creating line items to be used to display user's events history
         all_cart_items = CartItem.objects.filter(owner=request.user)
         for cart_item in all_cart_items:
         	lineItem = LineItem()

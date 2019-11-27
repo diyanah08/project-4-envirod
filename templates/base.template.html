@@ -1,113 +1,110 @@
-{% load static %} 
+{% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Acme|Amatic+SC|Bungee+Inline|Special+Elite&display=swap" rel="stylesheet">
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="{% static "styles.css"%}"/>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>EnviroD</title>
-  </head>
-  <body>
-    <div class = "container">
-      <nav class="navbar ml-auto navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url "home" %}">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Acme|Amatic+SC|Bungee+Inline|Special+Elite&display=swap" rel="stylesheet">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="{% static " styles.css "%}"/>
+
+  <title>EnviroD</title>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar ml-auto navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url " home " %}">
           <img src="{% static "images/logo.jpg" %}" width="70" height="70" class= "logo" alt=""/>EnviroD
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav  ml-auto">
-            <li class="dropdown nav-item">
-              <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a class = "dropdown-link" href={% url "about" %}>About</a></li>
-                <li><a class = "dropdown-link" href="{% url "map" %}">Locations</a></li>
-              </ul>
-            </li>
-            {% if not user.is_authenticated %}
-            <li class="dropdown nav-item">
-              <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a class = "dropdown-link" href="{% url "login" %}">Login</a></li>
-                <li><a class = "dropdown-link" href="{% url "register" %}">New User</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url "browse" %}">Browse</a>
-            </li>
-            {%endif%}
-            {%if user.is_authenticated %}
-            <li class="dropdown nav-item">
-              <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a class = "dropdown-link" href="{% url "profile" %}">View Profile</a></li>
-                <li><a class = "dropdown-link" href="{% url "editProfile" %}">Edit Profile</a></li>
-                <li><a class = "dropdown-link" href="{% url "password_change" %}">Change Password</a></li>
-              </ul>
-            </li>
-            <li class="dropdown nav-item">
-              <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a class = "dropdown-link" href="{% url "catalog" %}">Browse Events</a></li>
-                <li><a class = "dropdown-link" href="{% url "event_history" %}">Your Events History</a></li>
-                <li><a class = "dropdown-link" href="{% url "create_event" %}">Plan an Event</a></li>
-                <li><a class = "dropdown-link" href="{% url "view_created_events" %}">View Created Events</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "view" %}">Cart</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url "logout" %}">Logout</a>
-            </li>
-            {%endif%}
-            <li class="nav-link">
-              <div class= "ml-auto user-display">
-                {% if request.user.username %}
-                  Hello {{request.user.first_name}}!
-                {% endif %}
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      
-      {% if messages %}
-      <div class='alert alert-success'>
-      {% for m in messages %} {{ m }} {% endfor %}
-       </div>
-      {% endif %}
-
-      {%block content%}
-      {%endblock%}
-      
-      <div class = "footer">
-        <i>EnviroD - Building a community. Caring for the environment. Making small changes.</i>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav  ml-auto">
+          <li class="dropdown nav-item">
+            <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-link" href={% url "about" %}>About</a></li>
+              <li><a class="dropdown-link" href="{% url " map " %}">Locations</a></li>
+            </ul>
+          </li>
+          {% if not user.is_authenticated %}
+          <li class="dropdown nav-item">
+            <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-link" href="{% url " login " %}">Login</a></li>
+              <li><a class="dropdown-link" href="{% url " register " %}">New User</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url " browse " %}">Browse</a>
+          </li>
+          {%endif%} {%if user.is_authenticated %}
+          <li class="dropdown nav-item">
+            <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-link" href="{% url " profile " %}">View Profile</a></li>
+              <li><a class="dropdown-link" href="{% url " editProfile " %}">Edit Profile</a></li>
+              <li><a class="dropdown-link" href="{% url " password_change " %}">Change Password</a></li>
+            </ul>
+          </li>
+          <li class="dropdown nav-item">
+            <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-link" href="{% url " catalog " %}">Browse Events</a></li>
+              <li><a class="dropdown-link" href="{% url " event_history " %}">Your Events History</a></li>
+              <li><a class="dropdown-link" href="{% url " create_event " %}">Plan an Event</a></li>
+              <li><a class="dropdown-link" href="{% url " view_created_events " %}">View Created Events</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url " view " %}">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url " logout " %}">Logout</a>
+          </li>
+          {%endif%}
+          <li class="nav-link">
+            <div class="ml-auto user-display">
+              {% if request.user.username %} Hello {{request.user.first_name}}! {% endif %}
+            </div>
+          </li>
+        </ul>
       </div>
-      
+    </nav>
+
+    {% if messages %}
+    <div class='alert alert-success'>
+      {% for m in messages %} {{ m }} {% endfor %}
+    </div>
+    {% endif %} {%block content%} {%endblock%}
+
+    <div class="footer">
+      <i>EnviroD - Building a community. Caring for the environment. Making small changes.</i>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-    <!--SCRIPT GOTTEN FROM https://www.w3schools.com/jsref/met_his_back.asp-->
-    <script>
-      function goBack() {
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!--SCRIPT GOTTEN FROM https://www.w3schools.com/jsref/met_his_back.asp-->
+  <script>
+    function goBack() {
       window.history.back();
-      }
-    </script>
-    
-    {%block footer_js %}{%endblock%}
-  </body>
+    }
+  </script>
+
+  {%block footer_js %}{%endblock%}
+</body>
+
 </html>

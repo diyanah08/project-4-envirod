@@ -1,6 +1,11 @@
-{% extends 'base.template.html' %} {% load static %}
+<!--List of events that a user has registered and paid for. Used as a reminder for user-->
+
+{% extends 'base.template.html' %}
+
+{% load static %}
 
 {%block content%}
+
 <div class="main">
     <h1>Your Events History</h1>
     {%for line_item in line_items %}
@@ -25,6 +30,8 @@
     </div>
 
     {%endfor%}
+
+<!--pagination code gotten from https://docs.djangoproject.com/en/2.2/topics/pagination/-->
 
     <div class="pagination">
         <span class="step-links">

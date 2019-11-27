@@ -1,43 +1,47 @@
+<!--after login view of all events-->
+
 {% extends 'base.template.html' %}
 
 {% load crispy_forms_tags %}
 
 {%block content %}
 
-<div class = "main">
+<div class="main">
     <h1>Events at EnviroD</h1>
-<form method="get">
-    {{ filter.form | crispy }}
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
+    <form method="get">
+        {{ filter.form | crispy }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
 
-<div class="row">
-    {% for event in response %}
-      <div class="col-sm-4 mb-3 mt-2">
-        <div class="card" style="height: 100%;">
-            <img src="{{event.image.url}}" class="card-img-top">
-            <div class="card-body">
-                {% for t in event.tags.all %}
+    <div class="row">
+        {% for event in response %}
+        <div class="col-sm-4 mb-3 mt-2">
+            <div class="card" style="height: 100%;">
+                <img src="{{event.image.url}}" class="card-img-top">
+                <div class="card-body">
+                    {% for t in event.tags.all %}
                     <p class="card-text-info">{{t.name}}</p>
-                {%endfor%}
-                <h5 class="card-title">{{event.name}}</h5>
-                <p class="card-text">About Event:</p>
-                <p class="card-text-info">{{event.description}}</p>
-                <p class="card-text">Cost: <span class = "card-text-info">${{event.getCostInDollars}}0</span></p>
-                <p class="card-text">Date: <span class = "card-text-info">{{event.date}}</span></p>
-                <p class="card-text">Time: <span class = "card-text-info">{{event.start_time}} to {{event.end_time}}</span></p>
-                <p class="card-text">Location: <span class = "card-text-info">{{event.location}}</span></p>
-                <p class="card-text">Seats Available: <span class = "card-text-info">{{event.quantity}}</span></p>
-                <a href="{% url 'add_to_cart' event_id=event.id %}" class="btn btn-primary">Register</a>
+                    {%endfor%}
+                    <h5 class="card-title">{{event.name}}</h5>
+                    <p class="card-text">About Event:</p>
+                    <p class="card-text-info">{{event.description}}</p>
+                    <p class="card-text">Cost: <span class="card-text-info">${{event.getCostInDollars}}0</span></p>
+                    <p class="card-text">Date: <span class="card-text-info">{{event.date}}</span></p>
+                    <p class="card-text">Time: <span class="card-text-info">{{event.start_time}} to {{event.end_time}}</span></p>
+                    <p class="card-text">Location: <span class="card-text-info">{{event.location}}</span></p>
+                    <p class="card-text">Seats Available: <span class="card-text-info">{{event.quantity}}</span></p>
+                    <a href="{% url 'add_to_cart' event_id=event.id %}" class="btn btn-primary">Register</a>
+                </div>
             </div>
         </div>
-      </div>
-    {%endfor%}
-</div>
+        {%endfor%}
+    </div>
 
-{% if response.has_other_pages %}
-<div class="pagination">
-    <span class="step-links">
+
+<!--pagination-->
+    {% if response.has_other_pages %}
+    <div class="pagination">
+        <span class="step-links">
         {% if response.has_previous %}
             &nbsp; <a href="?page=1">First</a>&nbsp; |
             &nbsp; <a href="?page={{ response.previous_page_number }}">Previous</a>&nbsp; 
@@ -45,12 +49,10 @@
     
         <span class="current">
             Page {{ response.number }} of {{ response.paginator.num_pages }}
-        </span> {% if response.has_next %}
-        &nbsp; <a href="?page={{ response.next_page_number }}">Next</a>&nbsp; |
-        &nbsp; <a href="?page={{ response.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
-    </span>
-</div>
-{% endif %}
+        </span> {% if response.has_next %} &nbsp; <a href="?page={{ response.next_page_number }}">Next</a>&nbsp; | &nbsp; <a href="?page={{ response.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
+        </span>
+    </div>
+    {% endif %}
 </div>
 
 {%endblock%}

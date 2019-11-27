@@ -1,49 +1,56 @@
+<!--view requested enquiries to hold events-->
+
 {% extends 'base.template.html' %}
 
 {%block content%}
-<div class = "main">
-<h1>Your Created Events</h1>
-{%for each_event in createdEvents %}
-<div class= "event">
-    {% for t in each_event.tags.all %}
-        <p>{{t.name}}</p>
-    {%endfor%}
-<h4 class = "card-title">{{ each_event.event_title }}</h4>
-<p class="card-text">Description: <span class="card-text-info">{{ each_event.description }}</span></p>
-<p class="card-text">Name : <span class="card-text-info">{{ each_event.name }}</span></p>
-<p class="card-text">Telephone: <span class="card-text-info">{{ each_event.phone_number }}</span></p>
-<p class="card-text">Cost: <span class="card-text-info">${{ each_event.cost_per_pax }}.00</span></p>
-<p class="card-text">Seats Needed: <span class="card-text-info">{{ each_event.seats }}</span></p>
-<p class="card-text">Date: <span class="card-text-info">{{ each_event.date }}</span></p>
-<p class="card-text">Start Time: <span class="card-text-info">{{ each_event.start_time }}</span></p>
-<p class="card-text">Duration: <span class="card-text-info">{{ each_event.hours_needed }}h</span></p>
-<p class="card-text">Location: <span class="card-text-info">{{ each_event.location }}</span></p>
-<a href="/events/edit_event/{{each_event.id}}" class="btn btn-primary">Edit</a> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-info" data-whatever="@mdo">Delete</button>
 
-<div class="modal fade" id="delete-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-                <button type="button" class="button close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="confirm Message" class="col-form-label"><h6>Confirm Delete?</h6></label>
+<div class="main">
+    <h1>Your Created Events</h1>
+    {%for each_event in createdEvents %}
+    <div class="event">
+        {% for t in each_event.tags.all %}
+        <p>{{t.name}}</p>
+        {%endfor%}
+        <h4 class="card-title">{{ each_event.event_title }}</h4>
+        <p class="card-text">Description: <span class="card-text-info">{{ each_event.description }}</span></p>
+        <p class="card-text">Name : <span class="card-text-info">{{ each_event.name }}</span></p>
+        <p class="card-text">Telephone: <span class="card-text-info">{{ each_event.phone_number }}</span></p>
+        <p class="card-text">Cost: <span class="card-text-info">${{ each_event.cost_per_pax }}.00</span></p>
+        <p class="card-text">Seats Needed: <span class="card-text-info">{{ each_event.seats }}</span></p>
+        <p class="card-text">Date: <span class="card-text-info">{{ each_event.date }}</span></p>
+        <p class="card-text">Start Time: <span class="card-text-info">{{ each_event.start_time }}</span></p>
+        <p class="card-text">Duration: <span class="card-text-info">{{ each_event.hours_needed }}h</span></p>
+        <p class="card-text">Location: <span class="card-text-info">{{ each_event.location }}</span></p>
+        <a href="/events/edit_event/{{each_event.id}}" class="btn btn-primary">Edit</a> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-info" data-whatever="@mdo">Delete</button>
+
+
+<!--modal from bootstrap to confirm delete-->
+        <div class="modal fade" id="delete-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                        <button type="button" class="button close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="confirm Message" class="col-form-label"><h6>Confirm Delete?</h6></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/events/delete_event/{{each_event.id}}" class="btn btn-primary">Delete</a>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="/events/delete_event/{{each_event.id}}" class="btn btn-primary">Delete</a>
-            </div>
         </div>
+
     </div>
-</div>
+    
+    {%endfor%}
 
-</div>
-{%endfor%}
-
-<div class="pagination">
-    <span class="step-links">
+<!--pagination-->
+    <div class="pagination">
+        <span class="step-links">
         {% if createdEvents.has_previous %}
             <a href="?page=1">first |  </a>
             <a href="?page={{ posts.previous_page_number }}">previous</a>
@@ -52,10 +59,10 @@
         <span class="current">
             Page {{ createdEvents.number }} of {{ createdEvents.paginator.num_pages }}
         </span> {% if createdEvents.has_next %}
-    <a href="?page={{ createdEvents.next_page_number }}">next |  </a>
-    <a href="?page={{ createdEvents.paginator.num_pages }}">last</a> {% endif %}
-    </span>
-  </div>
+        <a href="?page={{ createdEvents.next_page_number }}">next |  </a>
+        <a href="?page={{ createdEvents.paginator.num_pages }}">last</a> {% endif %}
+        </span>
+    </div>
 
 </div>
 

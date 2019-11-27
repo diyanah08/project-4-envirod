@@ -3,16 +3,18 @@
 {% load crispy_forms_tags %}
 
 {%block content%}
-<div class = "main">
-<h1>Log In</h1>
-<form method="POST">
-  {% csrf_token %}
-  {{ form | crispy }}
-  <input type='submit' class="btn btn-primary" value='Log In'/> <a href="{% url "password_reset" %}" class="btn btn-primary">Forgot Password</a>
-</form>
-<h1>New to EnviroD?</h1>
-<div class="checkout">
-<a href="{% url "register" %}" class="btn btn-primary">Register for an Account</a>
+
+<div class="main">
+  <h1>Log In</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input type='submit' class="btn btn-primary" value='Log In' /> <a href="{% url " password_reset " %}" class="btn btn-primary">Forgot Password</a>
+  </form>
+  <h1>New to EnviroD?</h1>
+  <div class="checkout">
+    <a href="{% url " register " %}" class="btn btn-primary">Register for an Account</a>
+  </div>
 </div>
-</div>
+
 {%endblock%}

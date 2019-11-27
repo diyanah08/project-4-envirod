@@ -15,6 +15,8 @@ def home(request):
 def about(request):
     return render(request, 'events/about.template.html')
 
+
+# before login view of events
 def browse(request):
     all_events = Event.objects.all()
     event_filter = EventFilter(request.GET, queryset=all_events)
@@ -40,6 +42,7 @@ def browse(request):
         'response' : response
     })
 
+# after login view of events
 def catalog(request):
     all_events = Event.objects.all()
     event_filter = EventFilter(request.GET, queryset=all_events)
@@ -65,8 +68,7 @@ def catalog(request):
         'response' : response
     })
 
-
-    
+# form for enquiring to request to use EnviroD space for an event
 def createEvent(request):
     form = CreateEventForm()
     if request.method == "POST":
@@ -85,6 +87,7 @@ def createEvent(request):
             'form': form
         })
 
+# view above requests
 def viewCreatedEvents(request):
 
     createdEvents = CreateEvent.objects.all().order_by('date')
@@ -101,6 +104,7 @@ def viewCreatedEvents(request):
 
     return render(request, "events/view_event.template.html", {"createdEvents": createdEvents})
 
+# edit requests
 def editEvent(request, create_event_id):
     event = get_object_or_404(CreateEvent, pk=create_event_id)
     
@@ -118,6 +122,7 @@ def editEvent(request, create_event_id):
             "form":form
     	})
 
+# delete requests
 def deleteEvent(request, create_event_id):
     event = get_object_or_404(CreateEvent, pk=create_event_id)
     event.delete()

@@ -1,18 +1,23 @@
 {% extends 'base.template.html' %}
 
-{% load static %} 
+{% load static %}
 
+
+<!--required mapbox javascripts-->
 {%block footer_js %}
+
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
 <script src="{% static 'js/maps.js' %}"></script>
+
 {%endblock%}
 
-{%block content %}
-<div class = "main">
-<h1>Visit Us</h1>
 
-<div id = "address">
-  <div class="row justify-content-around">
+{%block content %}
+<div class="main">
+  <h1>Visit Us</h1>
+
+  <div id="address">
+    <div class="row justify-content-around">
       <div class="col-sm-4 mt-4">
         <h5>EnviroD Space @ PLQ</h5>
         10 Paya Lebar Rd</br>
@@ -37,19 +42,17 @@
         Tel: 6457 9900</br>
         Email: j8_envirod@mail.com</br>
       </div>
-  </div>
-  <div class="row justify-content-around call">
-    <div class="col-sm-8">
-      Call any of our locations during our office hours<br/>
-      Tue-Fri: 2pm - 10pm or Sat-Sun: 10am - 8pm<br/>
-      or drop us an email for any enquiries, feedback or collaboration ideas.<br/>
+    </div>
+    <div class="row justify-content-around call">
+      <div class="col-sm-8">
+        Call any of our locations during our office hours<br/> Tue-Fri: 2pm - 10pm or Sat-Sun: 10am - 8pm<br/> or drop us an email for any enquiries, feedback or collaboration ideas.<br/>
+      </div>
     </div>
   </div>
-</div>
 
-<div class = "map-page">
-  <div id="map"></div>
-</div>
+  <div class="map-page">
+    <div id="map"></div>
+  </div>
 
 </div>
 

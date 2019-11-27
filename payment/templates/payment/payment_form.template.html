@@ -1,15 +1,17 @@
 {% extends 'base.template.html' %}
 
 {%block content%}
-<div class = "main">
-    <form method='GET' action='{% url 'pay' %}'>
+
+<div class="main">
+    <form method='GET' action='{% url ' pay ' %}'>
         {% csrf_token %}
         <h1>Cart Items:</h1>
-            {%for cart_item in all_cart_items %}
-                <p>{{cart_item.event.name}} x {{cart_item.quantity }}</p>
-            {%endfor%}
+        {%for cart_item in all_cart_items %}
+        <p>{{cart_item.event.name}} x {{cart_item.quantity }}</p>
+        {%endfor%}
         <h5>Total Amount to Pay: ${{total_cost}}0</h5>
-        <input type='submit' class="btn btn-primary" value='Proceed to Payment'/>
+        <input type='submit' class="btn btn-primary" value='Proceed to Payment' />
     </form>
 </div>
+
 {%endblock%}

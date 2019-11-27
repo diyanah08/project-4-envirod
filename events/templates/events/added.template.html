@@ -2,57 +2,62 @@
 
 {% load static %}
 
+
+<!--javascript for bootstrap toasts-->
 {%block footer_js %}
 
 <script>
-$(document).ready(function(){
-    $("#myToast").toast({ autohide: false });
-    $("#myToast").toast('show');
-});
+    $(document).ready(function() {
+        $("#myToast").toast({ autohide: false });
+        $("#myToast").toast('show');
+    });
 </script>
 
 {%endblock%}
 
+
 {%block content %}
 
-<div class = "main">
-    
-<div class="row">
-    {% for event in all_events %}
-      <div class="col-sm-4 mb-3 mt-2">
-        <div class="card" style="height: 100%;">
-            <img src="{{event.image.url}}" class="card-img-top">
-            <div class="card-body">
-                {% for t in event.tags.all %}
+<div class="main">
+
+    <div class="row">
+        {% for event in all_events %}
+        <div class="col-sm-4 mb-3 mt-2">
+            <div class="card" style="height: 100%;">
+                <img src="{{event.image.url}}" class="card-img-top">
+                <div class="card-body">
+                    {% for t in event.tags.all %}
                     <p class="card-text-info">{{t.name}}</p>
-                {%endfor%}
-                <h5 class="card-title">{{event.name}}</h5>
-                <a href="{% url 'catalog' %}" class="btn btn-primary">Back to Events</a>
+                    {%endfor%}
+                    <h5 class="card-title">{{event.name}}</h5>
+                    <a href="{% url 'catalog' %}" class="btn btn-primary">Back to Events</a>
+                </div>
             </div>
         </div>
-      </div>
-    {%endfor%}
-</div>
+        {%endfor%}
+    </div>
 
 
-<div class="bs-example">
-    <div class="toast" id="myToast" style="position: absolute; top: 75px; right: 200px; width: 400px;">
-        <div class="toast-header">
-            <strong class="mr-auto"><i class="fa fa-grav"></i>Added to Cart!</strong>
-            <a href="{% url "catalog" %}"><button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+    <!--toast used as alert for things successfully being added to cart-->
+    <div class="bs-example">
+        <div class="toast" id="myToast" style="position: absolute; top: 75px; right: 200px; width: 400px;">
+            <div class="toast-header">
+                <strong class="mr-auto"><i class="fa fa-grav"></i>Added to Cart!</strong>
+                <a href="{% url " catalog " %}"><button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
                 <span aria-hidden="true">&times;</span>
             </button></a>
-        </div>
-        <div class="toast-body">
-            <h5>Cart Items</h5>
-            {%for cart_item in all_cart_items %}
+            </div>
+            <div class="toast-body">
+                <h5>Cart Items</h5>
+                {%for cart_item in all_cart_items %}
                 <p>{{cart_item.event.name}} x {{cart_item.quantity }}</p>
-            {%endfor%}
-            <a href="{% url "view" %}" class="btn btn-primary">Checkout!</a>
-            <p>or <a href="{% url "catalog" %}">close</a> to continue shopping</p>
+                {%endfor%}
+                <a href="{% url " view " %}" class="btn btn-primary">Checkout!</a>
+                <p>or <a href="{% url " catalog " %}">close</a> to continue shopping</p>
+            </div>
         </div>
     </div>
-</div>
 
 </div>
+
 {%endblock%}
