@@ -8,4 +8,4 @@ class CartItem(models.Model):
     quantity = models.IntegerField(blank=False, default=0)
     
     def __str__(self):
-        return self.events.name + " x " + str(self.quantity)
+        return self.event.name + " x " + str(self.quantity)

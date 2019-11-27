@@ -71,14 +71,12 @@ def catalog(request):
 # form for enquiring to request to use EnviroD space for an event
 @login_required
 def createEvent(request):
+    user = request.user
     form = CreateEventForm()
-    
     if request.method == "POST":
-        form = CreateEventForm(request.POST)
+        form = CreateEventForm(request.POST, instance=request.user)
         if form.is_valid():
-            new_event = form.save(commit=False)
-            new_event.user = request.user
-            new_event.save()
+            form.save()
             messages.success(request, "Thank you for your interest in organising an event. We will contact you shortly to discuss.")
             return redirect(reverse('view_created_events'))
         else:
@@ -86,7 +84,7 @@ def createEvent(request):
             return render(request, 'events/create_event.template.html', {
                 'form': form
             })
-    else:
+    else:   
         return render(request, 'events/create_event.template.html', {
             'form': form
         })
@@ -94,8 +92,8 @@ def createEvent(request):
 # view above requests
 @login_required
 def viewCreatedEvents(request):
-    
-    createdEvents = CreateEvent.objects.filter(user=request.user).order_by('date')
+
+    createdEvents = CreateEvent.objects.all().order_by('date')
     
     paginator = Paginator(createdEvents, 3)
 
