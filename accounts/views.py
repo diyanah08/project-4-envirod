@@ -20,6 +20,9 @@ def login(request):
             if user:
                 auth.login(user=user, request=request)
                 return redirect(reverse('catalog'))
+            else:
+               messages.error(request, "Incorrect Username or Password")
+               return redirect(reverse('login'))
     else:
         form = UserLoginForm()
         return render(request, 'accounts/login.template.html', {
