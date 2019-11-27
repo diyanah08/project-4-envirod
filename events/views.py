@@ -69,6 +69,7 @@ def catalog(request):
     })
 
 # form for enquiring to request to use EnviroD space for an event
+@login_required
 def createEvent(request):
     form = CreateEventForm()
     if request.method == "POST":
@@ -88,6 +89,7 @@ def createEvent(request):
         })
 
 # view above requests
+@login_required
 def viewCreatedEvents(request):
 
     createdEvents = CreateEvent.objects.all().order_by('date')
@@ -105,6 +107,7 @@ def viewCreatedEvents(request):
     return render(request, "events/view_event.template.html", {"createdEvents": createdEvents})
 
 # edit requests
+@login_required
 def editEvent(request, create_event_id):
     event = get_object_or_404(CreateEvent, pk=create_event_id)
     
@@ -123,6 +126,7 @@ def editEvent(request, create_event_id):
     	})
 
 # delete requests
+@login_required
 def deleteEvent(request, create_event_id):
     event = get_object_or_404(CreateEvent, pk=create_event_id)
     event.delete()

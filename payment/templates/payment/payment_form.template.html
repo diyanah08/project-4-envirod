@@ -3,7 +3,7 @@
 {%block content%}
 
 <div class="main">
-    <form method='GET' action='{% url ' pay ' %}'>
+    <form method='GET' action='{% url 'pay' %}'>
         {% csrf_token %}
         <h1>Cart Items:</h1>
         {%for cart_item in all_cart_items %}

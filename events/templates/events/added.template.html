@@ -43,7 +43,7 @@
         <div class="toast" id="myToast" style="position: absolute; top: 75px; right: 200px; width: 400px;">
             <div class="toast-header">
                 <strong class="mr-auto"><i class="fa fa-grav"></i>Added to Cart!</strong>
-                <a href="{% url " catalog " %}"><button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+                <a href="{% url "catalog" %}"><button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
                 <span aria-hidden="true">&times;</span>
             </button></a>
             </div>
@@ -52,8 +52,8 @@
                 {%for cart_item in all_cart_items %}
                 <p>{{cart_item.event.name}} x {{cart_item.quantity }}</p>
                 {%endfor%}
-                <a href="{% url " view " %}" class="btn btn-primary">Checkout!</a>
-                <p>or <a href="{% url " catalog " %}">close</a> to continue shopping</p>
+                <a href="{% url "view" %}" class="btn btn-primary">Checkout!</a>
+                <p>or <a href="{% url "catalog" %}">close</a> to continue shopping</p>
             </div>
         </div>
     </div>

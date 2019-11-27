@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Acme|Amatic+SC|Bungee+Inline|Special+Elite&display=swap" rel="stylesheet">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
-  <link rel="stylesheet" href="{% static " styles.css "%}"/>
+  <link rel="stylesheet" href="{% static "styles.css"%}"/>
 
   <title>EnviroD</title>
 </head>
@@ -19,7 +19,7 @@
 <body>
   <div class="container">
     <nav class="navbar ml-auto navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url " home " %}">
+      <a class="navbar-brand" href="{% url "home" %}">
           <img src="{% static "images/logo.jpg" %}" width="70" height="70" class= "logo" alt=""/>EnviroD
         </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,43 +31,43 @@
             <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-link" href={% url "about" %}>About</a></li>
-              <li><a class="dropdown-link" href="{% url " map " %}">Locations</a></li>
+              <li><a class="dropdown-link" href="{% url "map" %}">Locations</a></li>
             </ul>
           </li>
           {% if not user.is_authenticated %}
           <li class="dropdown nav-item">
             <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-link" href="{% url " login " %}">Login</a></li>
-              <li><a class="dropdown-link" href="{% url " register " %}">New User</a></li>
+              <li><a class="dropdown-link" href="{% url "login" %}">Login</a></li>
+              <li><a class="dropdown-link" href="{% url "register" %}">New User</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url " browse " %}">Browse</a>
+            <a class="nav-link" href="{% url "browse" %}">Browse</a>
           </li>
           {%endif%} {%if user.is_authenticated %}
           <li class="dropdown nav-item">
             <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-link" href="{% url " profile " %}">View Profile</a></li>
-              <li><a class="dropdown-link" href="{% url " editProfile " %}">Edit Profile</a></li>
-              <li><a class="dropdown-link" href="{% url " password_change " %}">Change Password</a></li>
+              <li><a class="dropdown-link" href="{% url "profile" %}">View Profile</a></li>
+              <li><a class="dropdown-link" href="{% url "editProfile" %}">Edit Profile</a></li>
+              <li><a class="dropdown-link" href="{% url "password_change" %}">Change Password</a></li>
             </ul>
           </li>
           <li class="dropdown nav-item">
             <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-link" href="{% url " catalog " %}">Browse Events</a></li>
-              <li><a class="dropdown-link" href="{% url " event_history " %}">Your Events History</a></li>
-              <li><a class="dropdown-link" href="{% url " create_event " %}">Plan an Event</a></li>
-              <li><a class="dropdown-link" href="{% url " view_created_events " %}">View Created Events</a></li>
+              <li><a class="dropdown-link" href="{% url "catalog" %}">Browse Events</a></li>
+              <li><a class="dropdown-link" href="{% url "event_history" %}">Your Events History</a></li>
+              <li><a class="dropdown-link" href="{% url "create_event" %}">Plan an Event</a></li>
+              <li><a class="dropdown-link" href="{% url "view_created_events" %}">View Created Events</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url " view " %}">Cart</a>
+            <a class="nav-link" href="{% url "view" %}">Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url " logout " %}">Logout</a>
+            <a class="nav-link" href="{% url "logout" %}">Logout</a>
           </li>
           {%endif%}
           <li class="nav-link">
