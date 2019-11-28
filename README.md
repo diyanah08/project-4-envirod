@@ -37,8 +37,7 @@ On the site educators will be able to:
 The site will include:
 - A database events from which users will be able to register for the events and make payment
 
-Below is the database schema for the website.
-- ![Database Schema](https://github.com/diyanah08/project-4-envirod/blob/master/static/images/envirod_database_schema.jpg) 
+The database schema for the website can be found [here.](https://github.com/diyanah08/project-4-envirod/blob/master/static/images/envirod_database_schema.jpg) 
 
 
 #### Structure:
