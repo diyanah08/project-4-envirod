@@ -18,7 +18,7 @@ def about(request):
 
 # before login view of events
 def browse(request):
-    all_events = Event.objects.all()
+    all_events = Event.objects.all().order_by('date')
     event_filter = EventFilter(request.GET, queryset=all_events)
     filtered_qs = filters.EventFilter(
                       request.GET, 
@@ -44,7 +44,7 @@ def browse(request):
 
 # after login view of events
 def catalog(request):
-    all_events = Event.objects.all()
+    all_events = Event.objects.all().order_by('date')
     event_filter = EventFilter(request.GET, queryset=all_events)
     filtered_qs = filters.EventFilter(
                       request.GET, 
