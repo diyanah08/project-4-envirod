@@ -43,13 +43,13 @@
     <div class="pagination">
         <span class="step-links">
         {% if response.has_previous %}
-            &nbsp; <a href="?page=1">First</a>&nbsp; |
+            &nbsp; <a href="?page=1">First Page</a>&nbsp; |
             &nbsp; <a href="?page={{ response.previous_page_number }}">Previous</a>&nbsp; 
         {% endif %}
     
         <span class="current">
             Page {{ response.number }} of {{ response.paginator.num_pages }}
-        </span> {% if response.has_next %} &nbsp; <a href="?page={{ response.next_page_number }}">Next</a>&nbsp; | &nbsp; <a href="?page={{ response.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
+        </span> {% if response.has_next %} &nbsp; <a href="?page={{ response.next_page_number }}">Next</a>&nbsp; | &nbsp; <a href="?page={{ response.paginator.num_pages }}">Last Page</a>&nbsp; {% endif %}
         </span>
     </div>
     {% endif %}
