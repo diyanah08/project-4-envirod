@@ -36,13 +36,13 @@
     <div class="pagination">
         <span class="step-links">
         {% if line_items.has_previous %}
-            &nbsp; <a href="?page=1">First</a>&nbsp; |
+            &nbsp; <a href="?page=1">First Page</a>&nbsp; |
             &nbsp; <a href="?page={{ posts.previous_page_number }}">Previous</a>&nbsp; 
         {% endif %}
     
         <span class="current">
             Page {{ line_items.number }} of {{ line_items.paginator.num_pages }}
-        </span> {% if line_items.has_next %} &nbsp; <a href="?page={{ line_items.next_page_number }}">Next</a>&nbsp; | &nbsp; <a href="?page={{ line_items.paginator.num_pages }}">Last</a>&nbsp; {% endif %}
+        </span> {% if line_items.has_next %} &nbsp; <a href="?page={{ line_items.next_page_number }}">Next</a>&nbsp; | &nbsp; <a href="?page={{ line_items.paginator.num_pages }}">Last Page</a>&nbsp; {% endif %}
         </span>
     </div>
 
